@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/AIM_GaitCore" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AIM_Vicon" vcs="Git" />
+  </component>
+</project>

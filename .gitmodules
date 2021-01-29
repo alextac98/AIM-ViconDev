@@ -1,0 +1,6 @@
+[submodule "AIM_GaitCore"]
+	path = AIM_GaitCore
+	url = git@github.com:alextac98/AIM_GaitCore.git
+[submodule "AIM_Vicon"]
+	path = AIM_Vicon
+	url = git@github.com:alextac98/AIM_Vicon.git
