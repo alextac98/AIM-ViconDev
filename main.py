@@ -12,38 +12,38 @@ import matplotlib.animation as animation
 
 
 if __name__ == '__main__':
-    data = Vicon.Vicon("TestData/ExoKneeRange_Test1.csv", interpolate=False)
+    data = Vicon.Vicon("TestData/KneePreTrial_Nathaniel1.csv", interpolate=False)
 
     # data = Vicon.Vicon("TestData/testdata.csv")
 
-    thigh_data = data.data_dict.get('Segments').get('thigh')
-    shank_data = data.data_dict.get('Segments').get('shank')
+    # thigh_data = data.data_dict.get('Segments').get('thigh')
+    # shank_data = data.data_dict.get('Segments').get('shank')
 
-    flexion = data._joint_objs.get('thigh_shank').angle.rz 
+    flexion = data._joint_objs.get('Thigh_Shank').angle.rz 
     flexion[:] = [(angle - 48)*-1 for angle in flexion] # Normalize angles
 
-    score_obj = data._joint_objs.get('thigh_shank').score
-    sara_obj = data._joint_objs.get('thigh_shank').sara
+    score_obj = data._joint_objs.get('Thigh_Shank').score
+    sara_obj = data._joint_objs.get('Thigh_Shank').sara
 
     # Calculate distance
     extension_list = []
     extension_list_score = []
 
-    test_thigh     = PointArray(data.data_dict.get('Trajectories').get('thigh4').get('X').get('data'),
-                                data.data_dict.get('Trajectories').get('thigh4').get('Y').get('data'),
-                                data.data_dict.get('Trajectories').get('thigh4').get('Z').get('data'))
+    test_thigh     = PointArray(data.data_dict.get('Trajectories').get('Thigh4').get('X').get('data'),
+                                data.data_dict.get('Trajectories').get('Thigh4').get('Y').get('data'),
+                                data.data_dict.get('Trajectories').get('Thigh4').get('Z').get('data'))
     
-    test_shank     = PointArray(data.data_dict.get('Trajectories').get('shank2').get('X').get('data'),
-                                data.data_dict.get('Trajectories').get('shank2').get('Y').get('data'),
-                                data.data_dict.get('Trajectories').get('shank2').get('Z').get('data'))
+    test_shank     = PointArray(data.data_dict.get('Trajectories').get('Shank2').get('X').get('data'),
+                                data.data_dict.get('Trajectories').get('Shank2').get('Y').get('data'),
+                                data.data_dict.get('Trajectories').get('Shank2').get('Z').get('data'))
 
-    thigh_pt_array = PointArray(thigh_data.get('TX').get('data'),
-                                thigh_data.get('TY').get('data'),
-                                thigh_data.get('TZ').get('data'))
+    # thigh_pt_array = PointArray(thigh_data.get('TX').get('data'),
+    #                             thigh_data.get('TY').get('data'),
+    #                             thigh_data.get('TZ').get('data'))
 
-    shank_pt_array = PointArray(shank_data.get('TX').get('data'),
-                                shank_data.get('TY').get('data'),
-                                shank_data.get('TZ').get('data'))
+    # shank_pt_array = PointArray(shank_data.get('TX').get('data'),
+    #                             shank_data.get('TY').get('data'),
+    #                             shank_data.get('TZ').get('data'))
     
     sara_pt_array  = PointArray(sara_obj.x_array,
                                 sara_obj.y_array,
@@ -60,15 +60,15 @@ if __name__ == '__main__':
         extension_list_score.append(Point.distance(thigh, score) + Point.distance(score, shank))
 
     # ----- 3D Animation of points ---- #
-    animation = AnimateModel(x_limit=(-500, 500), y_limit=(-500, 500), z_limit=(0, 500))
-    animation.import_markers(data.data_dict.get('Trajectories'))
-    animation.import_joint( joint_name = "knee",
-                            parent_joint_segment = test_thigh,
-                            child_joint_segment = test_shank,
-                            joint_center = score_pt_array)
-    animation.import_sara({'SARA': sara_obj})
-    animation.import_score({'SCoRE': score_obj})
-    animation.draw()
+    # animation = AnimateModel(x_limit=(-500, 500), y_limit=(-500, 500), z_limit=(0, 500))
+    # animation.import_markers(data.data_dict.get('Trajectories'))
+    # animation.import_joint( joint_name = "knee",
+    #                         parent_joint_segment = test_thigh,
+    #                         child_joint_segment = test_shank,
+    #                         joint_center = score_pt_array)
+    # animation.import_sara({'SARA': sara_obj})
+    # animation.import_score({'SCoRE': score_obj})
+    # animation.draw()
 
     # ----- Plot of Joint Centers + 
     # side_plot = z_fig.add_subplot(121)
